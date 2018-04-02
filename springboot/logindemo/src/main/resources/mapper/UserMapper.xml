@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.polysys.springboot.logindemo.dao.UserMapper">
+
+    <resultMap id="BaseResultMap" type="cn.polysys.springboot.logindemo.model.User">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="username" property="username" jdbcType="VARCHAR"/>
+        <result column="password" property="password" jdbcType="VARCHAR"/>
+    </resultMap>
+    <sql id="BASE_COLUMN">
+        id,username,password
+    </sql>
+
+    <select id="listByParams" parameterType="map" resultMap="BaseResultMap">
+        select
+        <include refid="BASE_COLUMN"/>
+        from user
+        <where>
+            <if test="id != null">
+                and id = #{id,jdbcType=INTEGER}
+            </if>
+            <if test="username != null and username != ''">
+                and username = #{username,jdbcType=VARCHAR}
+            </if>
+            <if test="password != null and password != ''">
+                and password = #{password,jdbcType=VARCHAR}
+            </if>
+        </where>
+    </select>
+
+    <select id="listAll" resultMap="BaseResultMap">
+        select
+        <include refid="BASE_COLUMN"/>
+        from user
+
+    </select>
+</mapper>
