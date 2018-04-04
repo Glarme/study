@@ -1,6 +1,7 @@
 package cn.polysys.springboot.logindemo.config;
 
-import cn.polysys.springboot.logindemo.util.AuthHandlerInterceptor;
+import cn.polysys.springboot.logindemo.core.auth.AuthHandlerInterceptor;
+import cn.polysys.springboot.logindemo.validate.ValidatorHandlerInterceptor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
@@ -22,24 +23,47 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupp
 })
 public class WebAppConfiguration extends WebMvcConfigurationSupport {
 
-    private Logger logger = LoggerFactory.getLogger(WebAppConfiguration.class);
-    public final static String SESSION_USER = "user";
+    private final static Logger LOGGER = LoggerFactory.getLogger(WebAppConfiguration.class);
 
+    /**
+     * 权限校验拦截器
+     *
+     * @return
+     */
     @Bean
     public AuthHandlerInterceptor getAuthHandlerInterceptor() {
         return new AuthHandlerInterceptor();
     }
 
+    /**
+     * 数据校验拦截器
+     *
+     * @return
+     */
+    @Bean
+    public ValidatorHandlerInterceptor getValidatorHandlerInterceptor() {
+        return new ValidatorHandlerInterceptor();
+    }
+
+
     @Override
     protected void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(getAuthHandlerInterceptor()).addPathPatterns("/**").excludePathPatterns("/login");
-        logger.debug("add Interceptors");
+        // 添加权限过滤拦截器
+        registry.addInterceptor(getAuthHandlerInterceptor()).addPathPatterns("/**");
+        // 添加数据校验拦截器
+        registry.addInterceptor(getValidatorHandlerInterceptor()).addPathPatterns("/**");
+        if (LOGGER.isDebugEnabled()) {
+            LOGGER.debug("add Interceptors");
+        }
+
     }
 
     @Override
     protected void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/static/**").addResourceLocations("classpath:/static/");
-        logger.debug("add resource handler");
+        if (LOGGER.isDebugEnabled()) {
+            LOGGER.debug("add resource handler");
+        }
     }
 
 }

@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>${status?if_exists }</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>${status! }</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <style type="text/css">
         body {
             margin-left: 200px
         }
+
         span {
             font-size: 25px;
             font-weight: bold;

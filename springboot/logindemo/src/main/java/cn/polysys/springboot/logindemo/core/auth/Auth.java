@@ -1,4 +1,4 @@
-package cn.polysys.springboot.logindemo.util;
+package cn.polysys.springboot.logindemo.core.auth;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

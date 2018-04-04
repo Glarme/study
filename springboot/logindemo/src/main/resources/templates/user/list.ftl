@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>login page</title>
+    <title>User List</title>
     <script type="text/javascript" src="/static/js/login.js"></script>
 </head>
 <body>

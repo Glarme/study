@@ -10,8 +10,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  */
 @MapperScan("cn.polysys.springboot.logindemo.dao")
 @SpringBootApplication
-public class Starter {
+public class LoginDemoWebAppStarter {
     public static void main(String[] args) {
-        SpringApplication.run(Starter.class,args);
+        SpringApplication.run(LoginDemoWebAppStarter.class, args);
     }
 }

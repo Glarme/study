@@ -13,13 +13,41 @@ import java.util.Map;
 public interface UserMapper {
     /**
      * 根据参数查找
-     * @param params
+     *
+     * @param param
      * @return
      */
-    List<User> listByParams(Map<String,Object> params);
+    List<User> listByParam(Map<String, Object> param);
+
+
+    /**
+     * 插入新用户
+     *
+     * @param user
+     * @return
+     */
+    int insert(User user);
+
+    /**
+     * 更新用户信息
+     *
+     * @param user
+     * @return
+     */
+    int update(User user);
+
+
+    /**
+     * 根据ID获取用户信息
+     *
+     * @param id
+     * @return
+     */
+    User get(Integer id);
 
     /**
      * 查詢所有用戶
+     *
      * @return
      */
     List<User> listAll();
