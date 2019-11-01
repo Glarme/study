@@ -72,7 +72,7 @@
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
-            <version>1.1.43</version>
+            <version>1.2.25</version>
         </dependency>
         <!-- springmvc 解析处理json数据依赖 start-->
         <dependency>
